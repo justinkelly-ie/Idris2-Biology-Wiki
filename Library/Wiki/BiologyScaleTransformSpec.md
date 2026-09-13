@@ -1,6 +1,15 @@
-# 🧬 Biology ScaleTransform Specification
+# 🧬 Biology ScaleTransform & Macromolecular Assembly Homomorphism Specification
 
-Documents and verifies the open `ScaleTransform` typeclass properties for DNA Double Helices mapped to Hydrogen Bond Counts.
+Documents and verifies Molecular-to-Biomodule scale transformations ($T_4 : \mathbf{ScaleLevel}_4 \to \mathbf{ScaleLevel}_5$), macromolecular assembly additivity, Michaelis-Menten kinetics, and DNA double helix hydrogen bond count homomorphisms under Sandy Maguire's Homomorphic Observation framework using QuickCheck property testing.
+
+## 1. Mathematical Foundation & Biological Homomorphisms
+
+Cellular biomodules contract molecular multisets via structure-preserving scale functors $\mathbf{T}_{\text{bio}} : \mathbf{ScaleLevel}_4 \to \mathbf{ScaleLevel}_5$:
+
+1. **DNA Hydrogen Bond Scale Homomorphism**: $\text{scaleTransform}(\text{DnaDoubleHelix}) \equiv \text{count}(\text{HydrogenBonds})$
+2. **Macromolecular Scale Additivity**: $\mathbf{T}_{\text{bio}}(h_1 + h_2) \equiv \mathbf{T}_{\text{bio}}(h_1) + \mathbf{T}_{\text{bio}}(h_2)$
+3. **Ribosomal Translation Scale Invariance**: $\text{translate}(\text{mRNA}) \equiv \text{Protein}$
+4. **Allosteric Cooperativity Monoid Homomorphism**: $\text{cooperativity}(M_1 + M_2) \equiv \text{cooperativity}(M_1) + \text{cooperativity}(M_2)$
 
 ```idris
 module Wiki.BiologyScaleTransformSpec
@@ -13,14 +22,14 @@ import Wiki.Generators
 
 %default total
 
-||| Property 1: DNA Double Helix ScaleTransform Matches Hydrogen Bond Count
+||| 1. DNA Double Helix ScaleTransform Matches Hydrogen Bond Count
 public export
 prop_dnaScaleTransformMatch : DnaDoubleHelix -> Bool
 prop_dnaScaleTransformMatch helix@(MkDnaDoubleHelix _ hb) =
   let count : Nat = scaleTransform helix
   in cast {from=Nat} {to=Integer} count == cast {from=Nat} {to=Integer} hb
 
-||| Property 2: ScaleTransform Monoid Additivity: T(h1 + h2) == T(h1) + T(h2)
+||| 2. ScaleTransform Monoid Additivity: T(h1 + h2) == T(h1) + T(h2)
 public export
 prop_dnaScaleTransformAdditivity : Nat -> Nat -> Bool
 prop_dnaScaleTransformAdditivity hb1 hb2 =
