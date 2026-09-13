@@ -1,19 +1,26 @@
-# Idris 2 Biology-Wiki
+# Idris2-Biology-Wiki
 
 [![Idris 2 Verification](https://img.shields.io/badge/Idris_2-0.8.0-blue.svg)](https://www.idris-lang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Verification suite and literate documentation chapter for **Idris2-Biology**, formalizing genetic translation, cellular dynamics, and hierarchical matter emergence.
+**Literate Verification Suite & Specification Manual for Layer 6 (`Idris2-Biology`)**
 
-## Overview
+`Idris2-Biology-Wiki` provides formal compile-time macro reflection proofs, QuickCheck property test suites, and literate Markdown specifications for **Layer 6** of the non-linear discrete multiset physical law ecosystem.
 
-`Idris2-Biology-Wiki` formalizes biological laws using exact multiset algebra:
+---
 
-- **Ribosomal Translation & Codons**: 3D Voxel codon chains ($AUG \to Met$, $GCU \to Ala$) mapped to amino acid sequences.
-- **Hierarchical Matter Ascent**: 7-phase cosmological matter progression verified via `%macro auditHierarchicalMatterAscent`.
-- **Universal Algebra TRS**: Term Rewriting System soundness proofs verified via `%macro auditUniversalAlgebraSoundness`.
+## 📚 Specification Chapters & Verification Modules
 
-## Verification & Build
+### 1. `Library/Wiki/BiologyScaleTransformSpec.md`
+- **Algebra & Homomorphisms:** Specifications for scale transformations mapping biomolecules to biological cellular modules (`transformMoleculeToBiomodule`).
+- **Verification:** QuickCheck property tests validating mass conservation, free energy minimization ($\Delta F \le 0$), and scale transform invariants.
+
+### 2. `Library/Wiki/Main.idr`
+- **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 6 (`lbiology-wiki`).
+
+---
+
+## 🚀 Verification & Build
 
 To compile the literate verification suite and execute the test runner binary:
 
@@ -22,7 +29,17 @@ idris2 --build Idris2-Biology-Wiki.ipkg
 ./build/exec/lbiology-wiki
 ```
 
-## Related Repositories
+---
 
-- [Idris2-Biology](https://github.com/justinkelly-ie/Idris2-Biology)
-- [Idris2-Universe-Wiki](https://github.com/justinkelly-ie/Idris2-Universe-Wiki)
+## 🏗️ 10-Layer Ecosystem Architecture
+
+1. `Idris2-Multiset-Core` / `Idris2-Multiset-Core-Wiki` (Layer 1: Flat Primitives)
+2. `Idris2-Multiset-Transform` / `Idris2-Multiset-Transform-Wiki` (Layer 2: Fields & Scale Functors)
+3. `Idris2-Multiset-Binary` / `Idris2-Multiset-Binary-Wiki` (Layer 2b: Boolean Field Engines)
+4. `Idris2-Multiset-Ternary` / `Idris2-Multiset-Ternary-Wiki` (Layer 2c: Balanced Ternary Sifting)
+5. `Idris2-Geometry` / `Idris2-Geometry-Wiki` (Layer 3: Emergent Metric Geometry)
+6. `Idris2-Physics` / `Idris2-Physics-Wiki` (Layer 3b/6: Physical Conservation Laws)
+7. `Idris2-Hadron` / `Idris2-Hadron-Wiki` (Layer 4b: Standard Model Confinement)
+8. `Idris2-Chemistry` / `Idris2-Chemistry-Wiki` (Layer 5b: Molecular Kinetics)
+9. `Idris2-Biology` / `Idris2-Biology-Wiki` (Layer 6: Biological Hierarchies & Active Inference)
+10. `Idris2-Universe` / `Idris2-Universe-Wiki` (Layer 10: Cosmic Motive & Master Audit)
