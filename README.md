@@ -16,7 +16,7 @@
 - **Verification:** QuickCheck property tests validating mass conservation, free energy minimization ($\Delta F \le 0$), and scale transform invariants.
 
 ### 2. `Library/Wiki/Main.idr`
-- **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 6 (`lbiology-wiki`).
+- **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 6 (`biology-wiki`).
 
 ---
 
@@ -26,7 +26,7 @@ To compile the literate verification suite and execute the test runner binary:
 
 ```bash
 idris2 --build Idris2-Biology-Wiki.ipkg
-./build/exec/lbiology-wiki
+./build/exec/biology-wiki
 ```
 
 ---

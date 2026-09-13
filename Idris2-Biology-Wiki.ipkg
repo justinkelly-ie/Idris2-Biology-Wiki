@@ -16,4 +16,4 @@ modules = Wiki.Generators
         , Wiki.BiologyScaleTransformSpec
 
 main = Wiki.Main
-executable = lbiology-wiki
+executable = biology-wiki
