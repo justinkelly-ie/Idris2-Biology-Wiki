@@ -3,17 +3,13 @@ version = 0.1.0
 authors = "Justin Kelly"
 brief   = "Discrete Systems Biology Architecture Specification Wiki"
 
-depends = base
-        , contrib
-        , linear
-        , Idris2-Multiset-Core
-        , Idris2-Biology
-        , idris2-QuickCheck
-
+depends = Idris2-Biology, Idris2-Electromagnetism, Idris2-Multiset-Core, Idris2-Multiset-Transform, base, idris2-QuickCheck, linear
 sourcedir = "Library"
 
-modules = Wiki.Generators
-        , Wiki.BiologyScaleTransformSpec
+modules = Main,
+          Wiki.BiologyScaleTransformSpec,
+          Wiki.Generators,
+          Wiki.Main
 
-main = Wiki.Main
+main = Main
 executable = biology-wiki

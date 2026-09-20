@@ -2,7 +2,20 @@
 
 Documents and verifies Molecular-to-Biomodule scale transformations ($T_4 : \mathbf{ScaleLevel}_4 \to \mathbf{ScaleLevel}_5$), macromolecular assembly additivity, Michaelis-Menten kinetics, and DNA double helix hydrogen bond count homomorphisms under Sandy Maguire's Homomorphic Observation framework using QuickCheck property testing.
 
-## 1. Mathematical Foundation & Biological Homomorphisms
+---
+
+## 1. Discrete Biological System $\leftrightarrow$ Multiset State Duality Dictionary
+
+| Biological Dynamic Construct | Multiset Basis Duality | Multiset Implementation |
+| :--- | :--- | :--- |
+| **Michaelis-Menten Enzyme System** | 5-Component Basis `Vexel` Vector | `enzymeVexel free es sub prod total : Vexel` |
+| **Ribosomal Codon Reading Frame** | 3-Nucleotide Basis Vector | `translateCodon : RNABase -> RNABase -> RNABase -> AminoAcid` |
+| **Wobble Degeneracy Error Distance** | Zero-Weight Distance Vector | `codonWobbleError : RNABase -> RNABase -> RNABase -> RNABase -> BoxInt` |
+| **DNA Double Helix Scale Functor** | Hydrogen Bond Count Homomorphism | `prop_dnaScaleTransformMatch : DnaDoubleHelix -> Bool` |
+
+---
+
+## 2. Mathematical Foundation & Biological Homomorphisms
 
 Cellular biomodules contract molecular multisets via structure-preserving scale functors $\mathbf{T}_{\text{bio}} : \mathbf{ScaleLevel}_4 \to \mathbf{ScaleLevel}_5$:
 
@@ -10,6 +23,10 @@ Cellular biomodules contract molecular multisets via structure-preserving scale 
 2. **Macromolecular Scale Additivity**: $\mathbf{T}_{\text{bio}}(h_1 + h_2) \equiv \mathbf{T}_{\text{bio}}(h_1) + \mathbf{T}_{\text{bio}}(h_2)$
 3. **Ribosomal Translation Scale Invariance**: $\text{translate}(\text{mRNA}) \equiv \text{Protein}$
 4. **Allosteric Cooperativity Monoid Homomorphism**: $\text{cooperativity}(M_1 + M_2) \equiv \text{cooperativity}(M_1) + \text{cooperativity}(M_2)$
+
+---
+
+## 3. Formal Specification & Verification Suite
 
 ```idris
 module Wiki.BiologyScaleTransformSpec
