@@ -32,10 +32,43 @@ Cellular biomodules contract molecular multisets via structure-preserving scale 
 module Wiki.BiologyScaleTransformSpec
 
 import Core
+import Core.Order.Preorder
+import Math.OnSeq.FusedStream
+import Data.Fuel
 import Biology
 import Wiki.Generators
 
 %default total
+
+||| Erased compile-time witness verifying genetic codon translation capacity (aminoAcids <= codons * 3)
+public export
+0 GeneticCodonConservationWitness : (codons : Nat) -> (aminoAcids : Nat) -> Type
+GeneticCodonConservationWitness codons aminoAcids = natLTE aminoAcids (codons * 3) = True
+
+||| Static compile-time witness proving genetic codon translation capacity (20 <= 10 * 3)
+public export
+prfGeneticCodonConservation : GeneticCodonConservationWitness 10 20
+prfGeneticCodonConservation = Refl
+
+||| Verified genetic translation state carrying erased codon conservation witness
+public export
+record VerifiedGeneticTranslation where
+  constructor MkVerifiedGeneticTranslation
+  codonCount     : Nat
+  aminoAcidCount : Nat
+  0 translationPrf : GeneticCodonConservationWitness codonCount aminoAcidCount
+
+||| $O(1)$ allocation deforested codon translation stream transducer using fusedHylomorphism
+public export covering
+fusedCodonTranslationStream : Fuel -> List (Nat, Nat) -> Nat
+fusedCodonTranslationStream f items =
+  fusedHylomorphism f
+    (\st => case st of
+              [] => Done
+              (c, a) :: rest => Yield (c + a) rest)
+    (\val, acc => val + acc)
+    0
+    items
 
 ||| 1. DNA Double Helix ScaleTransform Matches Hydrogen Bond Count
 public export
@@ -62,5 +95,6 @@ auditBiologyScaleTransformSpecProof : IO Bool
 auditBiologyScaleTransformSpecProof = do
   let r1 = qc prop_dnaScaleTransformMatch
   let r2 = qc2 prop_dnaScaleTransformAdditivity
-  pure (r1.pass == Just True && r2.pass == Just True)
+  let streamSum = fusedCodonTranslationStream (limit 100) [(10, 20), (5, 15)]
+  pure (r1.pass == Just True && r2.pass == Just True && streamSum == 50)
 ```
